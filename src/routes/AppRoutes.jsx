@@ -9,7 +9,7 @@ import DashboardLaporan from "../pages/laporan/DashboardLaporan";
 import RumahPage from "../pages/rumah/RumahPage";
 import NasabahPage from "../pages/nasabah/NasabahPage";
 import JenisSampahPage from "../pages/jenis-sampah/JenisSampahPage";
-import AdminPage from "../pages/admin/AdminPage";
+import AdminPage from "../pages/admin/Adminpage";
 import LaporanSetoran from "../pages/laporan/LaporanSetoran";
 
 // ================= SETORAN =================
