@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import DashboardLayout from "../layouts/DashboardLayout";
 
-import LoginPage from "../pages/auth/LoginPage";
+import LoginPage from "../pages/auth/loginpage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import DashboardLaporan from "../pages/laporan/DashboardLaporan";
 
