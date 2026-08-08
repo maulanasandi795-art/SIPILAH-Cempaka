@@ -71,14 +71,32 @@ export default function LoginPage() {
           borderRadius: 4,
         }}
       >
-        <Typography variant="h4" fontWeight="bold">
-          Cempaka Smart Waste
+        <Box
+          component="img"
+          src="/images/logo-sipilah.png"
+          alt="SIPILAH Cempaka"
+          sx={{
+            width: 100,
+            height: "auto",
+            display: "block",
+            mx: "auto",
+            mb: 2,
+          }}
+        />
+
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          textAlign="center"
+        >
+          SIPILAH CEMPAKA
         </Typography>
 
         <Typography
           sx={{
             color: "text.secondary",
             mb: 4,
+            textAlign: "center",
           }}
         >
           Selamat datang kembali.
