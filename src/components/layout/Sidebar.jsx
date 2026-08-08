@@ -147,7 +147,7 @@ export default function Sidebar({
       <Divider />
 
       <List>
-<ListItemButton
+        <ListItemButton
           onClick={async () => {
             await supabase.auth.signOut();
             navigate("/login");
@@ -160,12 +160,6 @@ export default function Sidebar({
             color: "error.main",
           }}
         >
-          <ListItemIcon>
-            <Logout color="error" />
-          </ListItemIcon>
-
-          <ListItemText primary="Logout" />
-        </ListItemButton>
           <ListItemIcon>
             <Logout color="error" />
           </ListItemIcon>
