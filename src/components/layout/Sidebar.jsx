@@ -10,7 +10,7 @@ import {
   Divider,
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { supabase } from "../../config/supabase";
 import {
   Dashboard,
   Home,
@@ -23,6 +23,7 @@ import {
   Settings,
   Logout,
 } from "@mui/icons-material";
+
 
 const menus = [
   {
@@ -146,7 +147,12 @@ export default function Sidebar({
       <Divider />
 
       <List>
-        <ListItemButton
+<ListItemButton
+          onClick={async () => {
+            await supabase.auth.signOut();
+            navigate("/login");
+            if (onClose) onClose();
+          }}
           sx={{
             mx: 1,
             mt: 1,
@@ -154,6 +160,12 @@ export default function Sidebar({
             color: "error.main",
           }}
         >
+          <ListItemIcon>
+            <Logout color="error" />
+          </ListItemIcon>
+
+          <ListItemText primary="Logout" />
+        </ListItemButton>
           <ListItemIcon>
             <Logout color="error" />
           </ListItemIcon>

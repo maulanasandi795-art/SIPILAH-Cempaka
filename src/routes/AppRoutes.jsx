@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import DashboardLayout from "../layouts/DashboardLayout";
+import ProtectedRoute from "./ProtectedRoute";
 
 import LoginPage from "../pages/auth/loginpage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
@@ -11,6 +12,7 @@ import NasabahPage from "../pages/nasabah/NasabahPage";
 import JenisSampahPage from "../pages/jenis-sampah/JenisSampahPage";
 import AdminPage from "../pages/admin/Adminpage";
 import LaporanSetoran from "../pages/laporan/LaporanSetoran";
+import PengaturanPage from "../pages/settings/PengaturanPage";
 
 // ================= SETORAN =================
 import SetoranPage from "../pages/setoran/SetoranPage";
@@ -27,7 +29,7 @@ export default function AppRoutes() {
           element={<LoginPage />}
         />
 
-        {/* Dashboard */}
+        {/* Dashboard - bisa diakses tanpa login */}
         <Route
           path="/dashboard"
           element={
@@ -41,28 +43,34 @@ export default function AppRoutes() {
         <Route
           path="/laporan"
           element={
-            <DashboardLayout>
-              <DashboardLaporan />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <DashboardLaporan />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
-<Route
-  path="/laporan/setoran"
-  element={
-    <DashboardLayout>
-      <LaporanSetoran />
-    </DashboardLayout>
-  }
-/>
+        <Route
+          path="/laporan/setoran"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout>
+                <LaporanSetoran />
+              </DashboardLayout>
+            </ProtectedRoute>
+          }
+        />
 
         {/* Rumah */}
         <Route
           path="/rumah"
           element={
-            <DashboardLayout>
-              <RumahPage />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <RumahPage />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
@@ -70,9 +78,11 @@ export default function AppRoutes() {
         <Route
           path="/nasabah"
           element={
-            <DashboardLayout>
-              <NasabahPage />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <NasabahPage />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
@@ -80,9 +90,11 @@ export default function AppRoutes() {
         <Route
           path="/jenis-sampah"
           element={
-            <DashboardLayout>
-              <JenisSampahPage />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <JenisSampahPage />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
@@ -90,9 +102,23 @@ export default function AppRoutes() {
         <Route
           path="/admin"
           element={
-            <DashboardLayout>
-              <AdminPage />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <AdminPage />
+              </DashboardLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Pengaturan */}
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout>
+                <PengaturanPage />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
@@ -101,27 +127,33 @@ export default function AppRoutes() {
         <Route
           path="/setoran"
           element={
-            <DashboardLayout>
-              <SetoranPage />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <SetoranPage />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/setoran/new"
           element={
-            <DashboardLayout>
-              <SetoranForm />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <SetoranForm />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/setoran/edit/:id"
           element={
-            <DashboardLayout>
-              <SetoranForm />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <SetoranForm />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 

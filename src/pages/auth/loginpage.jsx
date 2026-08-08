@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Card,
@@ -5,9 +7,51 @@ import {
   TextField,
   Button,
   Stack,
+  Alert,
 } from "@mui/material";
 
+import { supabase } from "../../config/supabase";
+
 export default function LoginPage() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleLogin() {
+    setError("");
+
+    if (!email || !password) {
+      setError("Email dan password wajib diisi.");
+      return;
+    }
+
+    setLoading(true);
+
+    const { error: loginError } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+    setLoading(false);
+
+    if (loginError) {
+      setError("Email atau password salah.");
+      return;
+    }
+
+    navigate("/dashboard");
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -41,22 +85,36 @@ export default function LoginPage() {
         </Typography>
 
         <Stack spacing={2}>
+
+          {error && (
+            <Alert severity="error">{error}</Alert>
+          )}
+
           <TextField
             label="Email"
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
 
           <TextField
             label="Password"
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
 
           <Button
             variant="contained"
             size="large"
+            onClick={handleLogin}
+            disabled={loading}
           >
-            Masuk
+            {loading ? "Memproses..." : "Masuk"}
           </Button>
+
         </Stack>
       </Card>
     </Box>
